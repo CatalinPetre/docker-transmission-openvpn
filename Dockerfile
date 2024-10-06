@@ -126,7 +126,7 @@ HEALTHCHECK --interval=1m CMD /etc/scripts/healthcheck.sh
 ARG REVISION
 ENV REVISION=${REVISION:-""}
 
-# Compatability with https://hub.docker.com/r/willfarrell/autoheal/
+# Compatibility with https://hub.docker.com/r/willfarrell/autoheal/
 LABEL autoheal=true
 
 # Expose ports and run
@@ -136,4 +136,5 @@ EXPOSE 9091
 # Privoxy
 EXPOSE 8118
 
-CMD ["dumb-init", "/etc/openvpn/start.sh"]
+# Modified start script to continue running even if OpenVPN fails
+CMD ["dumb-init", "/etc/scripts/start-transmission-openvpn.sh"]
